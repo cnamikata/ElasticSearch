@@ -9,9 +9,11 @@
 
 /** Firebase Settings
  ***************************************************/
+var source = ['name','place_name','description','datetime_end','datetime_init','location','photo_path','street','links'];
+var loc = ['location'];
 
 // Your Firebase instance where we will listen and write search results
-exports.FB_URL   = 'https://agoraehora-e85e0.firebaseio.com';
+exports.FB_URL   = 'https://weekanguru.firebaseio.com';
 
 // The path in your Firebase where clients will write search requests
 exports.FB_REQ   = process.env.FB_REQ || 'search/request';
@@ -21,7 +23,7 @@ exports.FB_RES   = process.env.FB_RES || 'search/response';
 
 // See https://firebase.google.com/docs/server/setup for instructions
 // to auto-generate the service-account.json file
-exports.FB_SERVICEACCOUNT = 'C:/Projects/ElasticSearch/weekangoroo-249728b84220.json'; //process.env.FB_ACC || 'service-account.json';
+exports.FB_SERVICEACCOUNT = 'C:/Projects/ElasticSearch/Weekanguru-bd3c23152240.json'; //process.env.FB_ACC || 'service-account.json';
 
 /** ElasticSearch Settings
  *********************************************/
@@ -63,37 +65,16 @@ else {
 
 exports.paths = [
   {
-    path  : "Brazil/PR",
-    index : "firebase",
-    type  : "PR",
-    fields: ['name','description','datetime_end','datetime_init','lat','lng','photo_path','street'],
-    filter: function(data) { return data.name !== 'system'; }
-    // see readme
-    //, parser: function(data) { data.msg = data.msg.toLowerCase(); return data; }
-    // see readme
-    //, refBuilder: function(ref, path) { return ref.orderBy(path.sortField).startAt(Date.now()); }
+    path  : "GeoLoc",
+    index : "firebase_loc",
+    type : "GeoLoc",
+    fields: loc
   },
   {
-    path  : "Brazil/SC",
+    path  : "Data",
     index : "firebase",
-    type  : "SC",
-    fields: ['name','description','datetime_end','datetime_init','lat','lng','photo_path','street'],
-    filter: function(data) { return data.name !== 'system'; }
-    // see readme
-    //, parser: function(data) { data.msg = data.msg.toLowerCase(); return data; }
-    // see readme
-    //, refBuilder: function(ref, path) { return ref.orderBy(path.sortField).startAt(Date.now()); }
-  },
-  {
-    path  : "Brazil/SP",
-    index : "firebase",
-    type  : "SP",
-    fields: ['name','description','datetime_end','datetime_init','lat','lng','photo_path','street'],
-    filter: function(data) { return data.name !== 'system'; }
-    // see readme
-    //, parser: function(data) { data.msg = data.msg.toLowerCase(); return data; }
-    // see readme
-    //, refBuilder: function(ref, path) { return ref.orderBy(path.sortField).startAt(Date.now()); }
+    type : "Data",
+    fields: source
   }
 ];
 

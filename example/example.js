@@ -49,26 +49,6 @@
 
   function buildQuery($form) {
 
-    /*   
-  
-    {
-      "index": "firebase",
-      "type": "PR",
-      "q": "cross"
-    }
-
-    {
-     "body": {
-       "query": {
-         "match": {
-           "field":  "foo",
-         }
-       }
-     }
-    }
-
-    */
-
     // this just gets data out of the form
     var index = $form.find('[name=index]').val();
     var type = $form.find('[name="type"]:checked').val();
@@ -81,8 +61,7 @@
 
     var query = {
       index: index,
-      type: type,
-      _source : ['name','description','datetime_end','datetime_init','lat','lng','photo_path','street']
+      type: type
     };
 
     // size and from are used for pagination
@@ -106,13 +85,15 @@
       body.query = {
         // match_phrase matches the phrase exactly instead of breaking it
         // into individual words
-        "match_phrase": {
+        
+        /*"match_phrase": {
           // this is the field name, _all is a meta indicating any field
           "name": term
-        }
-        /*"match": {
-           "_all":  term
         }*/
+
+        "match": {
+           "_all":  ''
+        }
 
         /**
          * Match breaks up individual words and matches any
@@ -124,7 +105,7 @@
       }
     }
     else {
-      query.q = term;
+      //query.q = term;
     }
   }
 
