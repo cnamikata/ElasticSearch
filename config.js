@@ -9,7 +9,7 @@
 
 /** Firebase Settings
  ***************************************************/
-var source = ['name','place_name','description','datetime_end','datetime_init','location','photo_path','street','links'];
+var source = ['name','place_name','description','date','interested','datetime_end','datetime_init','location','photo_path','street','links'];
 var loc = ['location'];
 
 // Your Firebase instance where we will listen and write search results
@@ -23,7 +23,7 @@ exports.FB_RES   = process.env.FB_RES || 'search/response';
 
 // See https://firebase.google.com/docs/server/setup for instructions
 // to auto-generate the service-account.json file
-exports.FB_SERVICEACCOUNT = 'C:/Projects/ElasticSearch/Weekanguru-bd3c23152240.json'; //process.env.FB_ACC || 'service-account.json';
+exports.FB_SERVICEACCOUNT = 'Weekanguru-bd3c23152240.json'; //process.env.FB_ACC || 'service-account.json';
 
 /** ElasticSearch Settings
  *********************************************/
